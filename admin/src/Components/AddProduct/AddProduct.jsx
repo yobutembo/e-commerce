@@ -3,7 +3,7 @@ import "./AddProduct.css";
 import upload_area from "../../assets/upload_area.svg";
 import { useState } from "react";
 
-const url = "https://js-clothing-backend.onrender.com";
+const apiBaseUrl = import.meta.env.API_BASE_URL || "http://localhost:4000";
 
 const AddProduct = () => {
   const [image, setImage] = useState(false);
@@ -32,7 +32,7 @@ const AddProduct = () => {
 
     formData.append("product", image);
 
-    await fetch(`${url}/upload`, {
+    await fetch(`${apiBaseUrl}/upload`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -49,7 +49,7 @@ const AddProduct = () => {
 
       console.log(product);
 
-      await fetch(`${url}/addproduct`, {
+      await fetch(`${apiBaseUrl}/addproduct`, {
         method: "POST",
         headers: {
           Accept: "application/json",
