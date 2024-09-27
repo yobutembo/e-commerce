@@ -1,0 +1,151 @@
+offers-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.offers {
+    width: 65%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 0 140px;
+    margin: 150px auto 50px auto;
+    background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+}
+.offers-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.offers-left h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    color: #171717;
+}
+
+.offers-left p {
+    font-size: 1.5rem;
+    color: #171717;
+    font-weight: 600;
+}
+
+.offers-left button {
+    width: 282px;
+    height: 70px;
+    border-radius: 35px;
+    border: none;
+    background-color: #ff4141;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+
+.offers-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 50px;
+}
+
+@media(max-width: 1280px){
+   .offers{
+    padding: 0 80px;
+    margin-bottom: 120px;
+   }
+   .offers-left h1{
+    font-size: 2.5rem;
+   }
+    .offers-left p{
+     font-size: 1.1rem;
+    }
+    .offers-right img {
+        width: 300px;
+    }
+    .offers-left button {
+        width: 220px;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+    .offers-right{
+        padding-top: 30px;
+    }
+}
+
+@media(max-width: 1024px){
+    .offers{
+     padding: 0 60px;
+     margin-bottom: 80px;
+     height: 40vh;
+    }
+    .offers-left h1{
+     font-size: 1.9rem;
+    }
+     .offers-left p{
+      font-size: 1rem;
+     }
+     .offers-right img {
+         width: 200px;
+     }
+     .offers-left button {
+         width: 160px;
+         height: 40px;
+         font-size: 1rem;
+     }
+     .offers-right{
+         padding-top: 60px;
+     }
+ }
+
+ @media(max-width: 800px){
+    .offers{
+     margin-bottom: 120px;
+    }
+    .offers-left h1{
+     font-size: 1.4rem;
+    }
+     .offers-left p{
+      font-size: 0.8rem;
+     }
+     .offers-right img {
+         width: 180px;
+     }
+     .offers-left button {
+         width: 140px;
+         height: 30px;
+         font-size: 0.75rem;
+     }
+    
+ }
+
+ @media(max-width: 500px){
+    .offers{
+     height: 25vh;
+     margin-bottom: 50px;
+     gap: 30px;
+    }
+    .offers-left h1{
+     font-size: 1rem;
+    }
+     .offers-left p{
+      font-size: 0.63rem;
+     } 
+     .offers-right img {
+         width: 130px;
+     }
+     .offers-left button {
+         width: 120px;
+         height: 25px;
+         font-size: 0.63rem;
+         margin-top: 12px;
+     }
+    
+ }
