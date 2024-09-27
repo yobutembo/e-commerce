@@ -10,6 +10,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 4000;
+const baseURL = process.env.BASE_URL || `http://localhost:${port}`;
 
 app.use(express.json()); //for parsing the incoming request with JSON payloads
 app.use(cors());
@@ -19,7 +20,10 @@ app.use(cors());
 // mongoose.connect("mongodb+srv://yobudev:Yobu@2024@cluster0.9kqnjqb.mongodb.net/e-commerce")
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("Database connected successfully"))
+  .then(() => {
+    console.log("Database connected successfully");
+    updateImageURLs(); //
+  })
   .catch((err) => console.log("Database connection error: ", err));
 
 //API creation
@@ -49,7 +53,7 @@ app.use("/images", express.static("upload/images"));
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `http://localhost:${port}/images/${req.file.filename}`,
+    image_url: `${baseURL}/images/${req.file.filename}`,
   });
 });
 
@@ -335,6 +339,38 @@ app.post("/getcart", fetchUser, async (req, res) => {
   let userData = await Users.findOne({ _id: req.user.id });
   res.json(userData.cartData);
 });
+
+// Function to update image URLs in the database
+const updateImageURLs = async () => {
+  try {
+    // Find all products with image URLs that contain 'localhost'
+    const productsWithLocalhost = await Product.find({
+      image: { $regex: "http://localhost" },
+    });
+
+    // If there are products with 'localhost', update them
+    if (productsWithLocalhost.length > 0) {
+      await Product.updateMany({ image: { $regex: "http://localhost" } }, [
+        {
+          $set: {
+            image: {
+              $replaceOne: {
+                input: "$image",
+                find: "http://localhost:4000",
+                replacement: baseURL,
+              },
+            },
+          },
+        },
+      ]);
+      console.log("Image URLs updated successfully.");
+    } else {
+      console.log("No products with 'localhost' in image URLs found.");
+    }
+  } catch (err) {
+    console.log("Error updating image URLs:", err);
+  }
+};
 
 app.listen(port, (err) => {
   if (!err) {
