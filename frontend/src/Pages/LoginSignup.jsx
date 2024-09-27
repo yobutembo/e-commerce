@@ -17,7 +17,7 @@ const LoginSignup = () => {
     console.log("login function executed", formData);
     try {
       const response = await fetch(
-        "hhttps://js-clothing-backend.onrender.com/login",
+        "https://js-clothing-backend.onrender.com/login",
         {
           method: "POST",
           headers: {
