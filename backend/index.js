@@ -18,9 +18,7 @@ app.use(cors());
 
 // mongoose.connect("mongodb+srv://yobudev:Yobu@2024@cluster0.9kqnjqb.mongodb.net/e-commerce")
 mongoose
-  .connect(
-    "mongodb+srv://yobudev:Yobu%402024@cluster0.9kqnjqb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("Database connected successfully"))
   .catch((err) => console.log("Database connection error: ", err));
 
